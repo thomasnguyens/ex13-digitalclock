@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!-- still a bit confused by this html file-->
+    <!-- comparing regulardiv vs reactDiv-->
+    <div id = "regularDiv">
+        
+    </div>
+
+    <div id = "reactDiv">
+        
+    </div>
+
+
+    <script type = "text/babel"> // always remember this command so that you can use React
+
+        // get react root and make sure root is declared outside of the fun function since the function is displayed every second
+        let rootNode = ReactDOM.createRoot("reactDiv"); 
+        
+        // regularDiv (virtualDOM) is being changed every second
+        let fun = () => { // wrapped it up into a function so that it can be called every second (for 1000 seconds)
+            // updating the DOM tree the regular way
+            let myStr = "<div> <h1> Date Time </h1> <input/> <p>" + (new Date()) + "</p></div>";
+            // console.log(myDate);
+            document.getElementById('regularDiv').innerHTML = myStr;
+
+            // using React
+            let MyDiv = <div>
+                            <h1> Date Time React </h1>
+                            <input/><br/>
+                            { (new Date()).toString()}
+                            </div>
+            rootNode.render(MyDiv);
+        }
+        setInterval(fun, 1000);
+    </script>
+</body>
+</html>
